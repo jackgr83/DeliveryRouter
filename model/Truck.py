@@ -10,6 +10,7 @@ class Truck:
         self.requested_time = request_time
         self.location = 'HUB'
         self.sort_route('HUB', 0)
+        self.corrected_address = False
 
     # Nearest Neighbor Algorithm
     def sort_route(self, location, current_index):
@@ -48,7 +49,7 @@ class Truck:
                 dist = self.distances.lookup_distance(self.location, package.address)
                 self.track_time(dist)
                 if str(self.requested_time) >= str(self.time):
-                    package.set_status('delivered')
+                    package.set_status('delivered at ' + str(self.time))
                     self.mileage += dist
                     self.location = package.address
                 else:
@@ -60,6 +61,11 @@ class Truck:
         s = int((t * 60) * 60) % 60
         self.time.add_minute(m)
         self.time.add_second(s)
+        # correct the wrong address
+        if self.number == 3 and str(self.time) >= '10:20' and not self.corrected_address:
+            self.package_data.search(9).set_address("410 S State St")
+            self.corrected_address = True
+
 
     def get_mileage(self):
         return self.mileage

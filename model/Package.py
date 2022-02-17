@@ -13,6 +13,9 @@ class Package:
     def set_status(self, status):
         self.status = status
 
+    def set_address(self, address):
+        self.address = address
+
     def __str__(self):
         return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.id, self.address, self.city, self.state, self.zip,
                                                        self.deadline, self.weight, self.notes, self.status)

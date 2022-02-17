@@ -17,11 +17,10 @@ for k in packages.get_all_keys():
     package = packages.search(k)
     if 'truck 2' in package.notes or 'Delayed' in package.notes:
         truck_two_packages.append(k)
-    elif package.deadline != 'EOD':
+    elif package.deadline != 'EOD' or package.id == 19:
         truck_one_packages.append(k)
     else:
         truck_three_packages.append(k)
-
 
 # User input
 rt = input("What time would you like to see package updates? (Enter as HH:MM in 24 hour time format): ")
