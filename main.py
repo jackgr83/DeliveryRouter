@@ -1,18 +1,21 @@
+# Joseph Rhodes #005759960
+
+# imports
 from utils.ImportPackages import ImportPackages
 from utils.ImportDistances import ImportDistances
 from model.Truck import Truck
 from model.Clock import Clock
-import json
 
+# import data
 packages = ImportPackages().get_package_table()
 distances = ImportDistances()
 
-
+# initialize truck package lists
 truck_one_packages = []
 truck_two_packages = []
 truck_three_packages = []
 
-
+# sort packages onto trucks based on constraints
 for k in packages.get_all_keys():
     package = packages.search(k)
     if 'truck 2' in package.notes or 'Delayed' in package.notes:
@@ -22,18 +25,17 @@ for k in packages.get_all_keys():
     else:
         truck_three_packages.append(k)
 
-# User input
+# User interface input
 rt = input("What time would you like to see package updates? (Enter as HH:MM in 24 hour time format): ")
-
-
-# Start the trucks
 request_time = Clock(int(rt.split(':')[0]), int(rt.split(':')[1]), 1)
 
+# Initialize instances of Truck class
 truck1 = Truck(truck_one_packages, packages, distances, Clock(8, 0, 1), request_time, 1)
 truck2 = Truck(truck_two_packages, packages, distances, Clock(9, 5, 1), request_time, 2)
-truck3 = Truck(truck_three_packages, packages, distances, Clock(8, 0, 1), request_time, 3)
+# Truck 3 leaves after truck 1 comes back with driver
+truck3 = Truck(truck_three_packages, packages, distances, Clock(10, 0, 1), request_time, 3)
 
-
+# Start the trucks
 truck1.start_route()
 truck2.start_route()
 truck3.start_route()
@@ -46,11 +48,6 @@ print(packages.print_table())
 print("")
 total_mileage = float(str(truck1.get_mileage())) + float(str(truck2.get_mileage())) + float(str(truck3.get_mileage()))
 print("Total mileage traveled: " + str(total_mileage))
-
-# Eventually remove this section
-print("Truck 1 mileage: " + str(truck1.get_mileage()))
-print("Truck 2 mileage: " + str(truck2.get_mileage()))
-print("Truck 3 mileage: " + str(truck3.get_mileage()))
 
 
 

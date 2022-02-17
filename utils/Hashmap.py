@@ -1,5 +1,8 @@
 # code obtained from Webinar 3 in Course Tips, Supplemental Resources
 class Hashmap:
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    #
     # Constructor with optional initial capacity parameter.
     # Assigns all buckets with an empty list.
     def __init__(self, initial_capacity=80):
@@ -8,6 +11,9 @@ class Hashmap:
         for i in range(initial_capacity):
             self.table.append([])
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    #
     # Inserts a new item into the hash table.
     def insert(self, key, item):  # does both insert and update
         # get the bucket list where this item will go.
@@ -26,6 +32,9 @@ class Hashmap:
         bucket_list.append(key_value)
         return True
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    #
     # Searches for an item with matching key in the hash table.
     # Returns the item if found, or None if not found.
     def search(self, key):
@@ -41,6 +50,9 @@ class Hashmap:
                 return kv[1]  # value
         return None
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    #
     # Removes an item with matching key from the hash table.
     def remove(self, key):
         # get the bucket list where this item will be removed from.
@@ -53,6 +65,8 @@ class Hashmap:
             if kv[0] == key:
                 bucket_list.remove([kv[0], kv[1]])
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def get_all_keys(self):
         keys = []
         for i in range(len(self.table)):  # iterate through list of bucket_lists
@@ -60,6 +74,8 @@ class Hashmap:
                 keys.append(m[0])
         return keys
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def print_table(self):
         for i in range(len(self.table)):
             for m in self.table[i]:

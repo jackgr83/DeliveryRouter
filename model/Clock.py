@@ -1,6 +1,8 @@
 import datetime
 
 
+# Time complexity: O(1)
+# Space complexity: O(1)
 class Clock:
     def __init__(self, hour, minute, second):
         self.hour = hour

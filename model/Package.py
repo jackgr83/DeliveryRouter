@@ -1,3 +1,5 @@
+# Time complexity: O(1)
+# Space complexity: O(1)
 class Package:
     def __init__(self, pid, address, city, state, zcode, deadline, weight, notes, status):
         self.id = int(pid)

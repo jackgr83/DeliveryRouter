@@ -1,12 +1,15 @@
 import csv
-import json
 
 
+# Time Complexity: O(n^2)
+# Space Complexity: O(n^2)
 class ImportDistances:
     def __init__(self):
         self.distance_table = {}
         self.import_distance_data('./data/distance_data.csv')
 
+    # Time Complexity: O(n^2)
+    # Space Complexity: O(n^2)
     def import_distance_data(self, csvfile):
         with open(csvfile) as csv_read:
             distance_file = csv.reader(csv_read)
@@ -22,6 +25,8 @@ class ImportDistances:
                 csv_read.seek(0)
                 next(distance_file)
 
+    # Time Complexity: O(1)
+    # Space Complexity: O(1)
     def lookup_distance(self, start, end):
         return self.distance_table[start][end]
 
